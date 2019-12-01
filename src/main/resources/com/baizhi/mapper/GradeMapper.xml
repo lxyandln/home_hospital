@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.GradeDAO">
+
+    <insert id="insertGrade">
+        insert into t_grade values(#{id},#{grade,jdbcType=VARCHAR})
+    </insert>
+    <delete id="deleteGrade">
+        delete from t_grade where id = #{id}
+    </delete>
+    <update id="updateGrade">
+        update t_grade set grade = #{grade,jdbcType=VARCHAR}
+        where id = #{id}
+    </update>
+
+    <select id="selectGradesPage" resultType="Grade">
+        select * from t_grade limit #{start},#{rows}
+    </select>
+    <select id="selectGradeCount" resultType="java.lang.Integer">
+        select count(id) from t_grade
+    </select>
+
+    <select id="selectGradesAll" resultType="Grade">
+        select * from t_grade
+    </select>
+
+</mapper>

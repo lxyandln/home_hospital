@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "http://mybatis.org/dtd/mybatis-3-mapper.dtd" "mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.DepartmentDAO">
+
+    <!--<resultMap id="DepartmentResultMap" type="Department">
+        <id column="id" property="id"></id>
+        <result column="depart" property="depart"></result>
+        <collection property="ment" ofType="Hospital">
+            <id column="hid" property="id"></id>
+            <result column="name" property="name"></result>
+            <result column="birth" property="birth"></result>
+            <result column="phone" property="phone"></result>
+            <result column="salary" property="salary"></result>
+        </collection>
+
+    </resultMap>-->
+
+    <insert id="insertDepartment">
+        insert into t_department values(#{id},#{depart,jdbcType=VARCHAR})
+    </insert>
+    <delete id="deleteDepartment">
+        delete from t_department where id = #{id}
+    </delete>
+    <update id="updateDepartment">
+        update t_department set depart = #{depart,jdbcType=VARCHAR}
+        where id = #{id}
+    </update>
+
+    <select id="selectDepartmentsPage" resultType="Department">
+        select * from t_department limit #{start},#{rows}
+    </select>
+    <select id="selectDepartmentsAll" resultType="Department">
+        select * from t_department
+    </select>
+    <select id="selectDepartmentCount" resultType="java.lang.Integer">
+        select count(id) from t_department
+    </select>
+
+</mapper>
